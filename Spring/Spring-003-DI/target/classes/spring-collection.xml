@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="personBean" class="bean.Person">
+        <property name="name">
+            <list>
+                <value>张三</value>
+                <value>李四</value>
+                <value>王五</value>
+            </list>
+        </property>
+
+        <property name="address">
+            <set>
+                <value>宁夏回族自治区</value>
+                <value>吴忠市利通区</value>
+                <value>金银滩镇团庄村</value>
+            </set>
+        </property>
+
+        <property name="phone">
+            <map>
+                <entry key="1" value="10086"/>
+                <entry key="2" value="10001"/>
+                <entry key="3" value="12138"/>
+            </map>
+        </property>
+    </bean>
+</beans>

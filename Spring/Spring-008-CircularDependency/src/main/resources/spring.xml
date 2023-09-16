@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--singleton + setter模式下的循环依赖是没有任何问题的-->
+    <!--singleton表示在整个Spring容器中是单例的，独一无二的对象-->
+
+    <!--在singleton + setter模式下,为什么循环依赖不会出现问题? Spring是如何处理的? -->
+    <!--主要原因是：-->
+    <!--在这种模式下，Spring对Bean的管理分为清晰的两个阶段-->
+        <!--第一阶段：在Spring容器加载的时候，创建实例化Bean，只要其中任意一个Bean实例化之后，不等属性赋值，马上进行曝光-->
+        <!--第二阶段：Bean曝光之后，再进行属性的赋值-->
+    <!--核心解决思路是：实例化对象和对象属性赋值分为两个阶段来完成-->
+    <!--只有再scope为singleton的模式下，才会采取“提前曝光”-->
+
+    <!--prototype + setter模式下的循环依赖存在问题，会出现异常-->
+    <!--只有两个循依赖项均为prototype才会出现异常，有一个singleton就没问题-->
+
+    <bean id="husbandBean" class="myspring.bean.Husband" scope="singleton">
+        <property name="name" value="张三"/>
+        <property name="wife" ref="wifeBean"/>
+    </bean>
+
+    <bean id="wifeBean" class="myspring.bean.Wife" scope="singleton">
+        <property name="name" value="小花"/>
+        <property name="husband" ref="husbandBean"/>
+    </bean>
+</beans>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--定义bean-->
+    <bean id="orderDaoBean" class="dao.OrderDao"/>
+
+    <!--外部bean-->
+    <!--注入外部bean，使用ref属性引入-->
+    <bean id="orderServiceBean1" class="service.OrderService">
+        <property name="orderDao" ref="orderDaoBean"/>
+    </bean>
+
+    <!--内部bean-->
+    <!--在property标签中使用嵌套的bean标签，这就是内部bean-->
+    <bean id="orderServiceBean2" class="service.OrderService">
+        <property name="orderDao">
+            <bean class="dao.OrderDao"/>
+        </property>
+    </bean>
+
+    <!--简单类型注入-->
+    <!--给简单类型赋值，不能使用ref，要使用value-->
+    <bean id="userBean" class="bean.User">
+        <property name="username" value="张三"/>
+        <property name="age" value="21"/>
+        <property name="password" value="010921"/>
+    </bean>
+
+    <!--Spring来管理数据源-->
+    <bean id="myDataSource" class="jdbc.MyDataSource">
+        <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/test"/>
+        <property name="username" value="root"/>
+        <property name="password" value="010921"/>
+    </bean>
+
+    <!--NULL和空字符串注入-->
+    <bean id="studentBean" class="bean.Student">
+        <!--不给属性注入，默认值为NULL-->
+        <!--<property name="name" value="Tom"/>-->
+        <!--注入空字符，可以直接留空-->
+        <!--<property name="name" value=""/>-->
+        <!--手动注入null-->
+        <property name="name">
+            <null/>
+        </property>
+        <property name="age" value="21"/>
+    </bean>
+
+    <!--注入特殊符号-->
+    <!--Spring中共有五个特殊字符 > < ' " &-->
+    <bean id="mathBean" class="bean.MathBean">
+        <!--直接编写符号，会出现解析错误-->
+        <!--<property name="result" value="2 < 3"/>-->
+
+        <!--可以使用转义字符代替-->
+        <!--<property name="result" value="2 &gt; 3"/>-->
+
+        <!--使用<![CDATA[]]>，使用该方式，只能使用单独的value标签，不能在property中使用value属性-->
+        <property name="result">
+            <value><![CDATA[2 > 3]]></value>
+        </property>
+    </bean>
+</beans>

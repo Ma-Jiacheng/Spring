@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--bean标签两个重要属性
+        id：bean的唯一标识，不能重复
+        class：必须填写类的全路径
+    -->
+    <bean id="userBean" class="springBean.myspring.bean.User"/>
+    <bean id="userDaoBean" class="springBean.dao.userDaoImplForMySQL"/>
+
+    <!--Spring中也可以配置JDK中类的对象-->
+    <!--配置java.util.Date的bean-->
+    <bean id="nowTime" class="java.util.Date"/>
+</beans>

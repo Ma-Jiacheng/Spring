@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--第一步：引入context命名空间-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--第二步：使用标签，在location属性引入配置文件路径-->
+    <context:property-placeholder location="jdbc.properties"/>
+
+    <!--第三步：配置数据源-->
+    <!--Spring引入外部的属性配置文件-->
+    <bean id="dataSource" class="jdbc.MyDataSource">
+        <property name="driver" value="${driverClass}"/>
+        <property name="url" value="${url}"/>
+        <!--使用${变量}在加载时，优先加载Windows系统的变量值，所以通常在之前加入前缀-->
+        <property name="username" value="${username}"/>
+        <property name="password" value="${password}"/>
+    </bean>
+</beans>

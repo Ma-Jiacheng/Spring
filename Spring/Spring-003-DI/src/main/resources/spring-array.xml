@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="cola" class="myspring.bean.Water">
+        <property name="type" value="可乐"/>
+    </bean>
+    <bean id="spring" class="myspring.bean.Water">
+        <property name="type" value="雪碧"/>
+    </bean>
+    <bean id="milk" class="myspring.bean.Water">
+        <property name="type" value="牛奶"/>
+    </bean>
+
+    <bean id="arrayDI" class="myspring.bean.arrayDI">
+        <!--数组元素为简单数据类型-->
+        <property name="food">
+            <array>
+                <value>炸鸡</value>
+                <value>汉堡</value>
+                <value>薯条</value>
+            </array>
+        </property>
+
+        <!--数组元素非简单数据类型-->
+        <property name="water">
+            <array>
+                <ref bean="cola"/>
+                <ref bean="milk"/>
+                <ref bean="spring"/>
+            </array>
+        </property>
+    </bean>
+</beans>

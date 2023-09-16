@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--选择性的实例化Bean-->
+    <!--第一种解决方法：
+        增加use-default-filters="false"，如果该属性为false，表示该包下所有带有声明Bean的注解全部失效
+        增加context:include-filter标签，type为annotation，expression中输入要生效的注解的全限定类名
+    -->
+    <!--
+    <context:component-scan base-package="spring.choose" use-default-filters="false">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+    </context:component-scan>
+    -->
+
+    <!--第二种解决方法：
+        增加use-default-filters="true"，如果该属性为true，表示该包下所有带有声明Bean的注解全部生效，不写也默认为全部生效
+        增加context:exclude-filter，type为annotation，expression中输入不需要生效的注解的全限定类名
+    -->
+    <context:component-scan base-package="spring.choose">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+</beans>

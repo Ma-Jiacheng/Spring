@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
+    <!--配置Dao-->
+    <bean id="userDaoBean" class="dao.UserDao"/>
+    <!--配置Service-->
+    <bean id="userService" class="service.UserService">
+        <!--使用Spring调用对应的set方法，需要配置property标签-->
+        <!--name属性如何指定值：将set方法的名称，去掉set，然后将剩下的单词首字母变为小写-->
+        <!--ref翻译为引用，ref后指定的是要注入bean的id-->
+        <property name="userDao" ref="userDaoBean"/>
+    </bean>
+
+
+</beans>

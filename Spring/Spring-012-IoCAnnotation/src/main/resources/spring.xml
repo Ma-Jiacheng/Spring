@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    <!--给Spring框架指定要扫描哪些包中的类-->
+    <!--<context:component-scan base-package="spring.bean"/>-->
+
+    <!--解决IoC注解多个包同时扫描的问题：多个包使用 "," 隔开-->
+    <context:component-scan base-package="spring.bean, spring.dao"/>
+    <!--也可以指定多个包共同的父包，但会牺牲一定效率-->
+    <!--<context:component-scan base-package="spring"/>-->
+</beans>

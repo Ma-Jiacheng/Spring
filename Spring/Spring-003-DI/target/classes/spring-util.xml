@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--第一步：引入util命名空间-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+    <!--如果需要管理多个数据源，需要编写很多重复代码-->
+    <!--使用Util注入properties集合，可以实现对配置文件的重复使用-->
+    <util:properties id="prop">
+        <prop key="driver">com.mysql.cj.jdbc.Driver</prop>
+        <prop key="url">jdbc:mysql://localhost:3306/test</prop>
+        <prop key="username">root</prop>
+        <prop key="password">010921</prop>
+    </util:properties>
+
+    <bean id="myDataSource01" class="jdbc.MyDataSource01">
+        <property name="properties" ref="prop"/>
+    </bean>
+
+    <bean id="myDataSource02" class="jdbc.MyDataSource02">
+        <property name="properties" ref="prop"/>
+    </bean>
+
+</beans>

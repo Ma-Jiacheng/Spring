@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--第一步：在配置文件头部添加P命名空间-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+        <!--第二部：使用-->
+        <bean id="peopleBean" class="bean.People" c:_0="张三" c:_1="21" c:_2="true"/>
+        <!--<bean id="peopleBean" class="bean.People" c:name="张三" c:age="21" c:sex="true"/>-->
+</beans>

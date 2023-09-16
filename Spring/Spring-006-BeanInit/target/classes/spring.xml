@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--Spring提供的实例化方式第一种：在Spring配置文件中直接配置类路径，Spring会自动调用该类的无参数构造方法实例化Bean-->
+    <bean id="springBean" class="bean.SpringBean"/>
+
+    <!--Spring提供的实例化方式第二种：简单工厂模式，在Spring配置文件中编写调用哪个类的哪个方法获取Bean-->
+    <bean id="starFactory" class="bean.StarFactory" factory-method="get"/>
+
+    <!--Spring提供的实例化方式第三种：通过工厂方法模式，通过factory-bean属性 + factory-method属性共同完成-->
+    <bean id="gunFactory" class="bean.GunFactory"/>
+    <bean id="gun" factory-bean="gunFactory" factory-method="get"/>
+
+    <!--Spring提供的实例化方式第四种：通过FactoryBean接口实现，实际上是第三种方式的简化-->
+    <bean id="person" class="bean.PersonFactoryBean"/>
+</beans>

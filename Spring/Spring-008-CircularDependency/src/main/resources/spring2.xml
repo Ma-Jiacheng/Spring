@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--构造注入下的循环依赖有没有问题？-->
+    <!--基于构造注入的方式下，产生的循环依赖是无法解决的-->
+    <bean id="fatherBean" class="myspring.bean.Father" scope="singleton">
+        <constructor-arg index="0" value="张三"/>
+        <constructor-arg index="1" ref="childrenBean"/>
+    </bean>
+
+    <bean id="childrenBean" class="myspring.bean.Children" scope="singleton">
+        <constructor-arg index="0" value="张四"/>
+        <constructor-arg index="1" ref="fatherBean"/>
+    </bean>
+</beans>

@@ -1,0 +1,27 @@
+Bean的生命周期可粗略的分为五步：
+    1. 实例化Bean（调用无参数构造方法）
+    2. 给Bean属性赋值（调用set方法）
+    3. 初始化Bean（调用Bean的init方法，该方法需要自己便携配置）
+    4. 使用Bean
+    5. 销毁Bean（调用Bean的destroy方法）
+
+Bean生命周期七步：
+    1. 实例化Bean（调用无参数构造方法）
+    2. 给Bean属性赋值（调用set方法）
+    3. 执行Bean后处理器的before方法  *(新增)
+    4. 初始化Bean（调用Bean的init方法，该方法需要自己便携配置）
+    5. 执行Bean后处理器的after方法   *(新增)
+    6. 使用Bean
+    7. 销毁Bean（调用Bean的destroy方法）
+
+Bean生命周期十步：
+    1. 实例化Bean（调用无参数构造方法）
+    2. 给Bean属性赋值（调用set方法）
+    3. 检查Bean是否实现了Aware的相关接口，并设置相关依赖项 *(新增)
+    4. 执行Bean后处理器的before方法
+    5. 检查Bean是否实现了InitializingBean接口，并调用接口方法 *(新增)
+    6. 初始化Bean（调用Bean的init方法，该方法需要自己便携配置）
+    7. 执行Bean后处理器的after方法
+    8. 使用Bean
+    9. 检查Bean是否实现了DisposableBean接口，并调用接口方法 *(新增)
+    10. 销毁Bean（调用Bean的destroy方法）
